@@ -104,6 +104,7 @@ const Home = () => {
       <Styles />
       <Container>
         <Head>
+          <title>Standard Labs. | Software consulting</title>
           <link
             href="https://fonts.googleapis.com/css?family=Space+Mono|Work+Sans&amp;display=swap"
             rel="stylesheet"
