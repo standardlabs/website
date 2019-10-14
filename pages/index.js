@@ -1,6 +1,61 @@
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
-import classNames from "classnames";
+import styled, { createGlobalStyle } from "styled-components";
+
+const Styles = createGlobalStyle`
+  html,
+  body,
+  div#__next {
+    height: 100%;
+    margin: 0;
+  }
+
+  body {
+    font-family: Work Sans; sans-serif;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: Space Mono, monospace;
+  }
+`;
+
+const Title = styled.h1`
+  color: ${({ theme }) => theme.colors.text};
+  margin: 0;
+  text-shadow: 1px 1px 5px ${({ theme }) => theme.colors.shadow};
+`;
+
+const Cursor = styled.span`
+  background-color: ${({ blink, theme }) =>
+    blink ? theme.colors.text : theme.colors.background};
+  color: ${({ blink, theme }) =>
+    blink ? theme.colors.background : theme.colors.text};
+  text-shadow: ${({ blink }) => blink && "none"};
+  transition: all 0.2s ease-out;
+`;
+
+const Text = styled.p`
+  color: ${({ theme }) => theme.colors.text};
+  margin: 0;
+`;
+
+const Container = styled.div`
+  align-items: center;
+  background-color: ${({ theme }) => theme.colors.background};
+  display: flex;
+  flex-wrap: wrap;
+  min-height: 100%;
+`;
+
+const Content = styled.div`
+  margin: auto;
+  text-align: center;
+`;
 
 const Home = () => {
   const [blink, setBlink] = useState(false);
@@ -11,71 +66,23 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="container">
-      <Head>
-        <link
-          href="https://fonts.googleapis.com/css?family=Space+Mono|Work+Sans&amp;display=swap"
-          rel="stylesheet"
-        />
-      </Head>
-      <div className="content">
-        <h1>
-          <span className={classNames("cursor", { blink })}>S</span>tandard
-          Labs.
-        </h1>
-        <p>Software consulting</p>
-      </div>
-      <style jsx>{`
-        h1,
-        p {
-          color: #fff;
-          margin: 0;
-        }
-
-        span.cursor {
-          transition: all 0.2s ease-out;
-        }
-
-        span.cursor.blink {
-          background-color: #fff;
-          color: #333;
-        }
-
-        div.content {
-          margin: auto;
-          text-align: center;
-        }
-
-        div.container {
-          align-items: center;
-          background-color: #333;
-          display: flex;
-          flex-wrap: wrap;
-          min-height: 100%;
-        }
-      `}</style>
-      <style jsx global>{`
-        html,
-        body,
-        div#__next {
-          height: 100%;
-          margin: 0;
-        }
-
-        body {
-          font-family: Work Sans;
-        }
-
-        h1,
-        h2,
-        h3,
-        h4,
-        h5,
-        h6 {
-          font-family: Space Mono;
-        }
-      `}</style>
-    </div>
+    <>
+      <Styles />
+      <Container>
+        <Head>
+          <link
+            href="https://fonts.googleapis.com/css?family=Space+Mono|Work+Sans&amp;display=swap"
+            rel="stylesheet"
+          />
+        </Head>
+        <Content>
+          <Title>
+            <Cursor blink={blink}>S</Cursor>tandard Labs.
+          </Title>
+          <Text>info@standardlabs.dev</Text>
+        </Content>
+      </Container>
+    </>
   );
 };
 
