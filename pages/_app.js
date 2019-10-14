@@ -5,7 +5,8 @@ import { ThemeProvider } from "styled-components";
 const theme = {
   colors: {
     background: "#333",
-    shadow: "rgba(0, 145, 255, 0.35)",
+    blue: alpha => `rgba(0, 145, 255, ${alpha})`,
+    highlight: "rgba(216, 255, 0, 0.2)",
     text: "#fff"
   }
 };

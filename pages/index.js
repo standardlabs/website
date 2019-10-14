@@ -27,7 +27,7 @@ const Styles = createGlobalStyle`
 const Title = styled.h1`
   color: ${({ theme }) => theme.colors.text};
   margin: 0;
-  text-shadow: 1px 1px 5px ${({ theme }) => theme.colors.shadow};
+  text-shadow: 1px 1px 5px ${({ theme }) => theme.colors.blue(0.35)};
 `;
 
 const Cursor = styled.span`
@@ -42,6 +42,40 @@ const Cursor = styled.span`
 const Text = styled.p`
   color: ${({ theme }) => theme.colors.text};
   margin: 0;
+`;
+
+const Link = styled.a`
+  background-color: transparent;
+  color: ${({ theme }) => theme.colors.blue(1)};
+  display: inline-block;
+  margin-top: 5px;
+  opacity: 0.8;
+  position: relative;
+  text-decoration: none;
+  transition: opacity 0.5s ease-out;
+  z-index: 0;
+
+  &:before {
+    background-color: ${({ theme }) => theme.colors.highlight};
+    bottom: 0;
+    content: "";
+    left: -4px;
+    position: absolute;
+    top: 0;
+    transform: skew(-10deg, 0deg);
+    transition: width 0.2s ease-out;
+    width: 0;
+    z-index: 1;
+  }
+
+  &:hover,
+  &:focus,
+  &:active {
+    opacity: 1;
+    &:before {
+      width: 105%;
+    }
+  }
 `;
 
 const Container = styled.div`
@@ -79,7 +113,14 @@ const Home = () => {
           <Title>
             <Cursor blink={blink}>S</Cursor>tandard Labs.
           </Title>
-          <Text>info@standardlabs.dev</Text>
+          <Text>Software consulting</Text>
+          <Link
+            href="mailto:info@standardlabs.dev"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            info@standardlabs.dev
+          </Link>
         </Content>
       </Container>
     </>
