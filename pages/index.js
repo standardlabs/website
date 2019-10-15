@@ -1,6 +1,13 @@
 import Head from "next/head";
 import React, { useEffect, useState } from "react";
-import styled, { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle, css } from "styled-components";
+
+const wait = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+const Fade = styled.div`
+  opacity: ${({ show }) => (show ? 1 : 0)};
+  transition: opacity 0.8s ease;
+`;
 
 const Styles = createGlobalStyle`
   html,
@@ -92,10 +99,19 @@ const Content = styled.div`
 `;
 
 const Home = () => {
+  const [showTitle, setShowTitle] = useState(false);
+  const [showText, setShowText] = useState(false);
   const [blink, setBlink] = useState(false);
 
-  useEffect(() => {
+  useEffect(async () => {
+    await wait(500);
+    setShowTitle(true);
+
+    await wait(500);
+    setShowText(true);
+
     const interval = setInterval(() => setBlink(blink => !blink), 500);
+
     return () => clearInterval(interval);
   }, []);
 
@@ -111,17 +127,21 @@ const Home = () => {
           />
         </Head>
         <Content>
-          <Title>
-            <Cursor blink={blink}>S</Cursor>tandard Labs.
-          </Title>
-          <Text>Software consulting</Text>
-          <Link
-            href="mailto:info@standardlabs.dev"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            info@standardlabs.dev
-          </Link>
+          <Fade show={showTitle}>
+            <Title>
+              <Cursor blink={blink}>S</Cursor>tandard Labs.
+            </Title>
+          </Fade>
+          <Fade show={showText}>
+            <Text>Software consulting</Text>
+            <Link
+              href="mailto:info@standardlabs.dev"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              info@standardlabs.dev
+            </Link>
+          </Fade>
         </Content>
       </Container>
     </>
