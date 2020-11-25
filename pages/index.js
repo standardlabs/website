@@ -129,7 +129,7 @@ const Home = () => {
         <Content>
           <Fade show={showTitle}>
             <Title>
-              <Cursor blink={blink}>S</Cursor>tandard Labs.
+              <Cursor blink={blink}>S</Cursor>tandard Labs
             </Title>
           </Fade>
           <Fade show={showText}>
