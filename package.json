@@ -1,6 +1,5 @@
 {
-  "name": "web-next",
-  "version": "0.1.0",
+  "name": "@standardlabs/website",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -10,12 +9,12 @@
   },
   "dependencies": {
     "classnames": "^2.2.6",
-    "next": "9.3.2",
-    "react": "16.10.2",
-    "react-dom": "16.10.2",
-    "styled-components": "^4.4.0"
+    "next": "^10.0.3",
+    "react": "^17.0.1",
+    "react-dom": "^17.0.1",
+    "styled-components": "^5.2.1"
   },
   "devDependencies": {
-    "prettier": "^1.18.2"
+    "prettier": "^2.2.1"
   }
 }
